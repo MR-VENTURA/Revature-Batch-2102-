@@ -1,0 +1,38 @@
+<html>
+
+<head>
+  <title>Author Drafts</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+<h1>Drafts: Review and Submit</h1>
+
+        <main>
+            <h3>Approved Pitches</h3>
+
+            <section id="catSection">
+            </section>
+        </main>
+
+<h2>Submit a Draft</h2>
+<p> If you have approved pitches congratulations. Please submit a draft for review. </p>
+<p>Submit one draft per approved pitch. Submit one draft at a time</p>
+<p>Please attach a cover sheet with contact information, abstract, and other requisite information</p>
+<form id="draftForm">
+  <label for="draft"> Select file: </label>
+  <input id="draft" name="draft" type="file">
+
+  <button type="submit" onclick="uploadDraft()" id="draftBtn" >Upload</button>
+</form>
+	
+
+<p>=Request for Draft Changes=</p>
+<p>If there are any request for changes, then please upload a new draft file</p>
+
+
+        <script src="js/check.js"></script>
+        <script src="js/drafts.js"></script>
+</body>
+</html>

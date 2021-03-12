@@ -1,0 +1,50 @@
+<html>
+
+<head>
+  <title>Pitch Submission</title>
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<title>Submit a Pitch</title>
+
+<h1> Story Pitch Submission Form </h1>
+<P> Fill out form below </p>
+
+<form name="submitPitch" method="POST" action=http://localhost:8081/StoryPitchMS/pitch>
+
+  <label for="title">Title: </label>
+  <input id="title" name="title" type="text" />
+  <label for="cdate">Completion Date: </label>
+  <input id="cdate" name="completionDate" type="date" />
+  <label for="type">Story Type:</label>
+  <select id="type" name="storyType">
+ <option value="novel">Novel</option>
+ <option value="novella">Novella</option>
+ <option value="shortStory">Short Story</option>
+ <option value="article">Article</option>
+  </select>
+  <label for="genre">Genre:</label>
+  <select id="genre" name="genre">
+ <option value="biography">Biography</option>
+ <option value="current">Current Events</option>
+ <option value="fiction">Fiction</option>
+ <option value="history">History</option>
+ <option value="science">Science</option>
+  </select>
+  <label for="tag">Tag Line: </label>
+  <input id="tag" name="tagline" type="text" />
+  <label for="desc">Description: </label>
+  <textarea id="desc" name="description" rows="4" cols="50">
+    Please input a detailed description of your story here.
+  </textarea>
+  <br><br>
+  <label for="files"> select files: </label>
+  <input id="files" name="files" type="file" multiple>
+
+  <input type="reset" value="Reset">
+  <input id="submit-pitch" type="submit" value="Submit"/>
+</form>
+
+
+
+</html>
