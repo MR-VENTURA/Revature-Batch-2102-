@@ -1,0 +1,28 @@
+<div class="bg">
+    <div class="container login-contain">
+        <div class="login-p">
+            <h1>Login</h1>
+            <form>
+                <input id="usernameInput" type="text" [(ngModel)]="username" name="username" placeholder="Username"/> <!-- two-way binding -->
+                <input id="passwordInput" type="password" [(ngModel)]="password" name="password" placeholder="Password" />
+                <p class="error" *ngIf="errorOnLogin != ''">{{ errorOnLogin }}</p>
+                <button id="getBtn" type="button" (click)="handleLogin()">Login</button>
+            </form>
+            <div id="regBtn" class="register" (click)="clickedRegister()">Register</div>
+
+            <div id="registerModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" (click)="clickedClose()">&times;</span>
+                    <h4>Register a New Account</h4>
+                    <p>Username</p>
+                    <input id="username" type="text" [(ngModel)]="newUser" placeholder="Username"/>
+                    <p>Password</p>
+                    <input  id="userpass" type="password" [(ngModel)]="newPass" placeholder="Password"/>
+                    <button id="getBtn" type="button" class="btn-update" (click)="clickedConfirm()">Register</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

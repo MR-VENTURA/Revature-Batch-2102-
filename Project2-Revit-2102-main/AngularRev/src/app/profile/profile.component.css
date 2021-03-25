@@ -1,0 +1,9 @@
+.profile {
+    text-align: center;
+}
+
+
+.deactivate {
+      cursor: pointer;
+      color: red;
+}

@@ -1,0 +1,78 @@
+<ng-container>
+    <app-success *ngIf="isSuccessful" [show]="isSuccessful"></app-success>
+    <div class="post-section" *ngIf="post.authorId.accountStatuses.status==='Active'">
+        <div class="text-group" *ngIf="userAccount.accountStatuses.status==='Active'">
+            <p class="name">{{post.authorId.username }}</p>
+            <div *ngIf="post.flaggedForReview===true && userAccount.accountRoles.role==='Admin'">
+              <p class="flag">Flagged<i class="fa fa-flag"></i></p>
+            </div>
+            <div class="dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="ellipse">...</a>
+            </div>
+            <div class="dropdown-menu">
+                <ng-container *ngIf="userAccount.accountRoles.role==='Admin'">
+                    <div class="post-comment" (click)="clickedBan()">
+                        <i class="fa fa-ban" [style.color]="isBanned ? 'red': ''"></i>
+                        <small>Ban User</small>
+                    </div>
+                    <div *ngIf="post.flaggedForReview===true" class="post-comment" (click)="clickedUnflag()">
+                        <i class="fa fa-flag" [style.color]="isFlagged ? 'green': ''"></i>
+                        <small>Unflag</small>
+                    </div>
+                    </ng-container>
+                    <ng-container *ngIf="userAccount.username===post.authorId.username || userAccount.accountRoles.role==='Admin'" >
+                    <div class="post-comment" (click)="clickedEdit()">
+                        <i class="fa fa-pencil-square-o"></i>
+                        <small>Edit</small>
+                    </div>
+                    <div class="post-comment" (click)="clickedDelete()">
+                        <i class="fa fa-times"></i>
+                        <small>Delete</small>
+                    </div>
+                    </ng-container>
+                    <div class="post-comment detail-like" (click)="clickedFlag()">
+                        <i class="fa fa-flag" aria-hidden="true" [style.color]="isFlagged ? 'red': ''"></i>
+                        <small>Report</small>
+                    </div>
+            </div>
+
+            <div id="updateModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" (click)="clickedCloseUpdate()">&times;</span>
+                    <textarea rows="5" id="post" name="post" class="post-big" [(ngModel)]="postmsg" placeholder="Update Post"></textarea>
+                    <button id="getBtn" type="button" class="btn-update" (click)="clickedUpdate()">Update</button>
+                </div>
+            </div>
+
+        </div>
+        <p class="date">{{ postDate }}</p>
+        <img *ngIf="post.contentId.image != ''" [src]="post.contentId.image" class="post-image"/>
+        <p class="content">{{ post.contentId.message }}</p>
+      <ng-container *ngIf="userAccount.accountStatuses.status==='Active'">
+        <div class="cover">
+            <div class="btn-post">
+                <div class="comment-hover" (click)="isClicked = !isClicked">
+                    <i class="fa fa-comment"></i>
+                    <small>comment</small>
+                </div>
+            </div>
+            <div class="comment-action comment-a" (click)="clickedLike()">
+                <i class="fa fa-thumbs-up" [style.color]="isLiked ? 'blue': ''"></i>
+                <small>Like</small>
+            </div>
+            <div class="comment-action" (click)="clickedDislike()">
+                <i class="fa fa-thumbs-down" [style.color]="isDisliked ? 'red': ''"></i>
+                <small>Dislike</small>
+            </div>
+        </div>
+        <div class="input-comment" [ngClass]="isClicked ? 'expand2': ''" [style.visibility]="isClicked ? 'visible': 'hidden'">
+            <input type="text" [ngClass]="isClicked ? 'expand': ''" placeholder="Write a comment..." [(ngModel)]="comment"/>
+            <button class="btn-comment" (click)="addComment()">Comment</button>
+        </div>
+      </ng-container>
+        <div class="loading-pulse" *ngIf="isLoading"></div>
+        <ng-container *ngFor="let c of postComments">
+            <app-post [userAccount]="userAccount" [post]="c" *ngIf="c.contentId.enabled"></app-post>
+        </ng-container>
+    </div>
+</ng-container>

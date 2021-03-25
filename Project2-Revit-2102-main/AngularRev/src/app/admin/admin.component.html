@@ -1,0 +1,14 @@
+<p>Admin component</p>
+
+<h3>Banned Users</h3>
+<div>
+<ng-container *ngFor="let account of account">
+{{account.peopleId}}
+{{account.username}}
+
+    <div class="unban" (click)="clickedUnban(account)">
+    <i class="fa fa-unlock"></i>
+    <small>Unban User</small>
+    </div>
+</ng-container>
+</div>

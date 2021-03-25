@@ -1,0 +1,37 @@
+<div class="container">
+    <app-success *ngIf="isSuccessful" [show]="isSuccessful"></app-success>
+<ng-container *ngIf="account.accountStatuses.status==='Active'">
+    <div class="row">
+        <div class="post-submittion">
+            <textarea rows="5" id="post" name="post" class="post-big" [(ngModel)]="postmsg" placeholder="What would you like to share?"></textarea>
+
+            <div class="form-group">
+                <div class="preview-zone hidden" *ngIf="files.length > 0">
+                  <div class="box box-solid">
+                    <div class="box-header with-border">
+                        <div><b>Preview</b></div>
+                        <img [src]="image" class="uploaded-image"/>
+                        <button type="button" class="btn btn-danger btn-xs" (click)="resetFiles()">
+                            <i class="fa fa-times"></i> Reset This Image
+                        </button>
+                    </div>
+                    <div class="box-body"></div>
+                  </div>
+                </div>
+                <div class="dropzone-wrapper" *ngIf="files.length == 0">
+                  <div class="dropzone-desc">
+                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                    <p>Choose an image file or drag it here.</p>
+                  </div>
+                  <input type="file" id="file" name="img_logo" class="dropzone" (change)="onFileChanged($event)" accept="image/x-png,image/gif,image/jpeg"/>
+                </div>
+              </div>
+            <button id="getBtn" type="button" class="btn-post" (click)="submitPost()">Post</button>
+        </div>
+    </div>
+  </ng-container>
+    <div class="loading-pulse" *ngIf="isLoading"></div>
+    <ng-container *ngFor="let p of posts">
+        <app-post *ngIf="p.parentPostId == null && p.contentId.enabled" [userAccount]="account" [post]="p"></app-post>
+    </ng-container>
+</div>
